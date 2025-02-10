@@ -107,7 +107,51 @@ def dice_rolling():
         print(sorted(throws_list))
     rows(number_of_throws)
 
-
+def drivers_licanse_exam():
+    import random as rd
+    import a3
+    NUM_OF_STUDENT=3
+    QUESTION_NUMBERS=20
+    answer_list=["A","B","C","D"]
+    passed_student_number=0
+    
+    correct_answers_list=a3.file_to_list("correct_answers.txt")
+    
+    for student in range(NUM_OF_STUDENT):
+        answers_file=open(f"student{student+1}.txt","w")
+        for i in range(QUESTION_NUMBERS):
+            answers_file.write(rd.choice(answer_list)+"\n")
+        answers_file.close()
+    
+    for student in range(NUM_OF_STUDENT):
+        answers_file=open(f"student{student+1}.txt","r")
+        students_answer_list=answers_file.readlines()
+        answers_file.close()
+        for index in range(QUESTION_NUMBERS):
+            students_answer_list[index]=students_answer_list[index].rstrip("\n")
+        correct_questions=0
+        incoorect_question_list=[]
+        for index in range(QUESTION_NUMBERS):
+            if students_answer_list[index]==correct_answers_list[index]:
+                correct_questions+=1
+            else:
+                incoorect_question_list.append(index+1)
+        if correct_questions>=15:
+            print(f"Student {student+1} was passed the exam.")
+            print(f"Correct question numbers: {correct_questions}")
+            print(f"Incorrect questions numbers: {QUESTION_NUMBERS-correct_questions}")
+            print(f"Incorrect questions question numbers:{incoorect_question_list} ")
+            passed_student_number+=1
+        else:            
+            print(f"Student {student+1} wasn't passed the exam.")
+            print(f"Correct question numbers: {correct_questions}")
+            print(f"Incorrect questions numbers: {QUESTION_NUMBERS-correct_questions}")
+            print(f"Incorrect questions question numbers:{incoorect_question_list} ")
+        print()
+        if passed_student_number>=1:
+            return False
+        else:
+            return True
 
 
 
