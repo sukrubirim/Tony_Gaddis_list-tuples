@@ -31,5 +31,30 @@ def bar_chart():
     bar_width=10
     plt.bar(left_edges, heights, bar_width,color=('r',"m","c","y","b"))
     plt.show()
-bar_chart()
+
+def pie_chart():
+    values=list(range(20,100,20))
+    slice_labels=['1st Qtr', '2nd Qtr', '3rd Qtr', '4th Qtr']
+    plt.title("Sales by Quarter")
+    plt.pie(values,labels=slice_labels,colors=('r', 'g', 'b', 'k'))
+    plt.show()
+
+pie_chart()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     
