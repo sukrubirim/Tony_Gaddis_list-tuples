@@ -1,16 +1,16 @@
-def list_to_file(list_a):
-    infile=open("cities.txt","w")
+def list_to_file(list_a,file_name):
+    infile=open(file_name,"w")
     for i in list_a:
         infile.write(str(i)+"\n")
     infile.close
-
-def file_to_list():
-    infile=open("cities.txt","r")
-    list_b=infile.readlines()
+    
+def file_to_list(file_name):
+    infile=open(file_name,"r")
+    list_x=infile.readlines()
     infile.close()
-    for index in range(len(list_b)):
-        list_b[index]=list_b[index].rstrip("\n")
-    print(list_b)
+    for index in range(len(list_x)):
+        list_x[index]=list_x[index].rstrip("\n")
+    return list_x
 
 def for_integers(list_integers):
     condition=True
@@ -31,10 +31,13 @@ def for_integers(list_integers):
             
 def main():
     list_a=["newyork","boston","atlanta","dallas"]
-    list_to_file(list_a)
-    file_to_list()
+    file_name="cities.txt"
+    list_to_file(list_a,file_name)
+    list_b=file_to_list(file_name)
+    print(list_b)
     list_integers=[1,2,3,4]
     for_integers(list_integers)
 
-main()
+if __name__=="__main__":
+    main()
 
