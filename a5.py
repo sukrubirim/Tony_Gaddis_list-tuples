@@ -153,7 +153,38 @@ def drivers_licanse_exam():
         else:
             return True
 
+def name_search():
+    import a3
+    boy_names_list=a3.file_to_list("BoyNames.txt")
+    girl_names_list=a3.file_to_list("GirlNames.txt")
+        
+    name=input("Enter a name: ")
+    try:
+        boy_names_list.index(name)
+        print("The name in the boys list.")
+    except ValueError:
+        try:
+            girl_names_list.index(name)
+            print("The name in the girls list.")
+        except ValueError:
+            print("The name is not on the either list.")
 
+def population_data():
+    import a3
+    us_population_list=a3.file_to_list("USPopulation.txt")
+    annual_change_list=[]
+    total=0
+    for index in range(len(us_population_list)-1):
+        annual_change=int(us_population_list[index+1])-int(us_population_list[index])
+        annual_change_list.append(annual_change)
+        total+=annual_change  
+    print(f"The average annual change in population during the time period: {total/(len(us_population_list)-1):,.2f}")
+    print(f"The year with the greatest increase in population during the time period: ",end="") 
+    print(f"Year {1950+annual_change_list.index(max(annual_change_list))} , increase {max(annual_change_list):,}")
+    print(f"The year with the smallest increase in population during the time period: ",end="") 
+    print(f"Year {1950+annual_change_list.index(min(annual_change_list))} , increase {min(annual_change_list):,}")
+
+def 
 
 
 
