@@ -1,0 +1,12 @@
+Rent
+1000
+Gas
+300
+Food
+6000
+Clothing
+1000
+Car payment
+300
+Misc
+500

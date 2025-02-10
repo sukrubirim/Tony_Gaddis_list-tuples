@@ -184,18 +184,106 @@ def population_data():
     print(f"The year with the smallest increase in population during the time period: ",end="") 
     print(f"Year {1950+annual_change_list.index(min(annual_change_list))} , increase {min(annual_change_list):,}")
 
-def 
+def world_series_champions():
+    champ_files=open("WorldSeriesWinners.txt","r")
+    champions_list=champ_files.readlines()
+    for index in range(len(champions_list)):
+        champions_list[index]=champions_list[index].rstrip("\n")
+    champ_files.close()
+    team=input("Enter the team name: ")
+    count=0
+    index=0
+    championship_years=[]
+    for champ in champions_list:
+        if team==champ:
+            count+=1
+            championship_years.append(index+1903)
+        index+=1
+        if index==1 or index==91:
+            index+=1 
+    if championship_years==[]:
+        print("This team was not found in the list.")
+    else:
+        print(f"Team {team} have {count} total championships in {championship_years}.")
+        
+def lo_shu_magic_square():
+    threeXthree_list=[0]*3
+    for rows in range(len(threeXthree_list)):
+        threeXthree_list[rows]=[0]*3
+    for rows in range(len(threeXthree_list)):
+        for column in range(len(threeXthree_list)):
+            threeXthree_list[rows][column]=int(input("Enter a number 1-9: "))
+    a=0
+    b=0
+    c=0
+    d=0
+    e=0
+    f=0
+    g=0
+    h=0
+    for i in range(3):
+        a+=threeXthree_list[0][i]
+        b+=threeXthree_list[1][i]
+        c+=threeXthree_list[2][i]
+        d+=threeXthree_list[i][i]
+        e+=threeXthree_list[i][2-i]
+        f+=threeXthree_list[i][0]
+        g+=threeXthree_list[i][1]
+        h+=threeXthree_list[i][2]
+    magic=True
+    for letter in [a,b,c,d,e,f,g,h]:
+        if letter!=15:
+            magic=False
+    if magic:
+        print("This is a Lo Shu Magic Square.")
+    else:
+        print("This is not a Lo Shu Magic Square.")
+        
+def magic_8_ball():
+    import random as rd
+    eight_ball_file=open("8_ball_responses.txt","r")
+    eight_ball_list=eight_ball_file.readlines()
+    for index in range(len(eight_ball_list)):
+        eight_ball_list[index]=eight_ball_list[index].rstrip("\n")
+    print("Ask a question: ",end="")
+    input()
+    print(rd.choice(eight_ball_list))
 
+def expense_pie_chart():
+    import matplotlib.pyplot as plt
+    my_expenses_file=open("my_expenses.txt","r")
+    topics=[]
+    expenses=[]
+    topic=my_expenses_file.readline()
+    while topic!="":
+        topics.append(topic.rstrip("\n"))
+        expenses.append(my_expenses_file.readline().rstrip("\n"))
+        topic=my_expenses_file.readline()
+    my_expenses_file.close()
+    
+    slice_labels=topics
+    values=expenses
+    plt.title("My Expenses")
+    plt.pie(values,labels=slice_labels,colors=("k","w"))
+    plt.show()
 
+def weekly_gas_graph_1994():
+    import matplotlib.pyplot as plt
+    gas_file=open("1994_Weekly_Gas_Averages.txt","r")
+    gas_list=gas_file.readlines()
+    for index in range(len(gas_list)):
+        gas_list[index]=(gas_list[index].rstrip("\n"))[3:]
+        gas_list[index]=float(gas_list[index])
+    x_coords = list(range(1,53))
+    y_coords = gas_list
+    plt.plot(x_coords,y_coords,marker="o")
+    plt.title("1994 Weekly Gas Averages")
+    plt.xlabel("Weeks")
+    plt.ylabel("Averages")
+    plt.grid(True)    
+    plt.xticks(x_coords)
+    plt.yticks(y_coords)
+    plt.show()   
+weekly_gas_graph_1994()
 
-
-
-
-
-
-
-
-
-
-
-
+        
